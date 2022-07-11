@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://thymeleaf.org">
+    <title>All users</title>
+    <style>
+        table {
+            width: 50%; /* Ширина таблицы */
+            background: black; /* Цвет фона таблицы */
+            color: black; /* Цвет текста */
+            border-spacing: 1px; /* Расстояние между ячейками */
+        }
+        td, th {
+            background: white; /* Цвет фона ячеек */
+            padding: 2px; /* Поля вокруг текста */
+        }
+    </style>
+</head>
+<body>
+<div>
+    <table>
+        <caption>USERS</caption>
+        <tr><th>Name</th><th>Last Name</th><th>Department</th><th>Salary</th><th>Modify User</th><th>Delete user</th></tr>
+        <th:block th:each="users : ${userList}">
+            <tr><td> <h1 th:text="${users.getName()}"></h1></td>
+                <td><h1 th:text="${users.getLastName()}"></h1></td>
+                <td><h1 th:text="${users.getDepartment()}"></h1></td>
+                <td><h1 th:text="${users.getSalary()}"></h1></td>
+                <td><form th:method="GET" th:action="@{/users/{id}/edit(id=${users.getId()})}">
+                    <input type="submit" value="Edit details"/>
+                </form></td>
+                <td><form th:method="DELETE" th:action="@{/users/{id}(id=${users.getId()})}">
+                    <input type="submit" value="Delete"/>
+                </form></td></tr>
+        </th:block>
+    </table>
+</div>
+<br>
+<br>
+<br>
+<a href="/users/new">Create new user</a>
+</body>
+</html>
