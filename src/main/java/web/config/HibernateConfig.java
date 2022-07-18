@@ -57,7 +57,7 @@ public class HibernateConfig {
     }
 
 
-    Properties additionalProperties() {
+    public Properties additionalProperties() {
         Properties properties = new Properties();
         try {
             InputStream inputStream = getClass().getClassLoader()
